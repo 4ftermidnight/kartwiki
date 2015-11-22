@@ -1,0 +1,52 @@
+<ui:composition template="/WEB-INF/template/DefaultLayout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Área Administrativa</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="form">
+		
+		<p:growl id="growl" life="2000"  />
+		
+		<p:fieldset legend="Serviços" toggleable="true" toggleSpeed="500">
+	        <h:panelGrid columns="2" cellpadding="5">
+	        
+	            <h:outputLabel for="panel-bt-leitura-xml" value="Serviço de leitura do XML:"/> 
+	           
+				<h:panelGroup id="panel-bt-leitura-xml" layout="block">
+					<p:commandButton id="btInitThread" 
+							value="Iniciar..."  
+							update="growl, panel-bt-leitura-xml" 
+							actionListener="#{kartTrackUpdateServiceBean.startKartTrackUpdateService}" 
+							styleClass="ui-priority-primary" 
+							rendered="#{not kartTrackUpdateServiceBean.running}"/>
+							
+					<p:commandButton id="btStopThread" 
+							value="Parar..."  
+							update="growl, panel-bt-leitura-xml" 
+							actionListener="#{kartTrackUpdateServiceBean.stopKartTrackUpdateService}" 
+							styleClass="ui-priority-primary" 
+							rendered="#{kartTrackUpdateServiceBean.running}"/>
+							
+							<br/>
+				</h:panelGroup>
+
+
+	        </h:panelGrid>
+    	</p:fieldset>
+		
+		<br/>
+		
+		
+
+ 
+		</h:form>
+		
+		
+	</ui:define>
+
+</ui:composition>

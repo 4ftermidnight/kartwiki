@@ -1,0 +1,83 @@
+<ui:composition template="/WEB-INF/template/DefaultLayout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">KartTrack</ui:define>
+
+	<ui:define name="corpo">
+		<f:metadata>
+			<f:viewAction action="#{kartTrackBean.init}" />
+		</f:metadata>
+	
+	
+		<h:form id="frm">
+		
+		<p:growl id="growl" life="2000"  />
+		
+		Gerenciar kartodromos xml etc e tal	
+		<br/>
+
+    		
+    		<p:toolbar style="margin-top: 20px">
+    			<p:toolbarGroup>
+    				<p:button value="Novo"/>
+    			</p:toolbarGroup>
+    		</p:toolbar>
+    	
+	    	<p:dataTable id="kartTrackTable" value="#{kartTrackBean.kartTracks}" var="item"
+		    		style="margin-top: 20px" emptyMessage="Nenhum kartódromo encontrado." rows="20"
+		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+		    		<p:column headerText="Código" style="text-align: center; width: 100px">
+		    			<h:outputText value="#{item.codigo}" />
+		    		</p:column>
+		    		<p:column headerText="Nome">
+		    			<h:outputText value="#{item.name}" />
+		    		</p:column>
+		    		<p:column headerText="Nome no XML">
+		    			<h:outputText value="#{item.otherName}" />
+		    		</p:column>
+		    		
+		    		<p:column headerText="Xml">
+		    			<h:outputText value="#{item.urlXml}" />
+		    		</p:column>
+		    		
+		    		<p:column headerText="Site">
+		    			<h:outputText value="#{item.urlSite}" />
+		    		</p:column>
+		    
+		    	
+		    	
+		    	
+		    		<p:column style="width: 100px; text-align: center">
+		    			<p:button  icon="ui-icon-pencil" title="Editar">
+		    				<f:param name="kartTrack" value="#{item.codigo}"/>
+		    			</p:button>
+		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
+								process="@this" update=":frm:confirmacaoExclusaoDialog">
+							<f:setPropertyActionListener target="#{kartTrackBean.selectedKartTrack}" value="#{item}" />
+						</p:commandButton>
+		    		</p:column>
+		    </p:dataTable>
+		    
+		    
+		    
+		    <p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
+	        		message="Tem certeza que deseja excluir o Kartodromo #{kartTrackBean.selectedKartTrack.name}?"  
+	                header="Exclusão de kartodromo" severity="alert">
+	        	<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
+	        	<p:commandButton value="Sim" update=":frm:kartTrackTable"
+	        			oncomplete="PF('confirmacaoExclusao').hide()" action="#{kartTrackBean.removeKartTrack}" />
+	    	</p:confirmDialog>
+
+		
+
+ 
+		</h:form>
+		
+		
+	</ui:define>
+
+</ui:composition>
