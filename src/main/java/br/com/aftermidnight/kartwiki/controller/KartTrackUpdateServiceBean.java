@@ -14,6 +14,8 @@ import br.com.aftermidnight.kartwiki.model.KartTrackTabelao;
 import br.com.aftermidnight.kartwiki.model.jaxb.livetime.KartodromoXMLElement;
 import br.com.aftermidnight.kartwiki.model.jaxb.livetime.PosicaoXMLElement;
 import br.com.aftermidnight.kartwiki.model.jaxb.livetime.adapter.MinutoSegundoMilisegundoAdapter;
+import br.com.aftermidnight.kartwiki.service.Scheduler;
+import br.com.aftermidnight.kartwiki.service.UpdateKartTrackTask;
 import br.com.aftermidnight.kartwiki.service.UpdateKartTrackThread;
 import br.com.aftermidnight.kartwiki.util.jsf.FacesUtil;
 import br.com.aftermidnight.kartwiki.util.xml.JAXBHelper;
@@ -22,11 +24,19 @@ import br.com.aftermidnight.kartwiki.util.xml.JAXBHelper;
 @Named
 public class KartTrackUpdateServiceBean implements Serializable{
 
-	private boolean running = false;
+	private boolean running;
 
 	@Inject private UpdateKartTrackThread thread;
 	
 	@Inject	private KartTrackDAO dao;
+	
+	
+	private UpdateKartTrackTask taskUpdateKartTrack = new UpdateKartTrackTask();
+	private Scheduler scheduler = new Scheduler();
+	
+	
+	
+	
 	
 	public KartTrackUpdateServiceBean(){}
 	
@@ -34,6 +44,7 @@ public class KartTrackUpdateServiceBean implements Serializable{
     public void afterCreate() {
 //		thread.setXmlUrl("http://laptime.sisecom.com.br/clientes/22157614CC3471X1WP8CD9WE8/livetime.xml");
 //		thread.start();
+		setup();
     }
 	
 	@PreDestroy
@@ -41,40 +52,49 @@ public class KartTrackUpdateServiceBean implements Serializable{
 		
     }
 	
+	private void setup(){
+		scheduler.schedule(taskUpdateKartTrack);
+//		scheduler.pause();
+	}
 	
-	public void startKartTrackUpdateService(){		
+	public void resume(){
 		if(isRunning()){
 			FacesUtil.info("Serviço já está iniciado");
-		} else {
-			KartodromoXMLElement k = readXmlData("http://laptime.sisecom.com.br/clientes/22157614CC3471X1WP8CD9WE8/livetime.xml");
-			
-			System.out.println("leu: "+k);
-			
-			proccessData(k);
-//			thread.notifyAll();
-//			running = true;
+		} else {	
+			scheduler.resume();
 			FacesUtil.info("Serviço iniciado");
 		}
 	}
 	
-	public void stopKartTrackUpdateService(){
-		if(!isRunning()){
+	public void pause(){
+		if(isPaused()){
 			FacesUtil.info("Serviço já está parado");
 		} else {
-			try {
-				thread.wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-//			running = false;
+			scheduler.pause();
 			FacesUtil.info("Serviço paradoo");
 		}
 	}
 	
 
 	public boolean isRunning() {
-		return thread.isAlive();
+		System.out.println("isRunning:"+ scheduler.isRunning());
+		return scheduler.isRunning();
 	}
+	
+	public boolean isPaused() {
+		System.out.println("isPaused:"+scheduler.isPaused());
+		return scheduler.isPaused();
+	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
 	
 	
 	
