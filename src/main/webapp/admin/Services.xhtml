@@ -20,15 +20,15 @@
 				<h:panelGroup id="panel-bt-leitura-xml" layout="block">
 					<p:commandButton id="btInitThread" 
 							value="Iniciar..."  
-							update="growl, panel-bt-leitura-xml" 
-							actionListener="#{kartTrackUpdateServiceBean.startKartTrackUpdateService}" 
+							update="growl, panel-bt-leitura-xml"
+							actionListener="#{kartTrackUpdateServiceBean.resume}" 
 							styleClass="ui-priority-primary" 
 							rendered="#{not kartTrackUpdateServiceBean.running}"/>
 							
 					<p:commandButton id="btStopThread" 
 							value="Parar..."  
 							update="growl, panel-bt-leitura-xml" 
-							actionListener="#{kartTrackUpdateServiceBean.stopKartTrackUpdateService}" 
+							actionListener="#{kartTrackUpdateServiceBean.pause}" 
 							styleClass="ui-priority-primary" 
 							rendered="#{kartTrackUpdateServiceBean.running}"/>
 							
