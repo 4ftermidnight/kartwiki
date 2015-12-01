@@ -1,17 +1,13 @@
 package br.com.aftermidnight.kartwiki.service;
 
-public abstract class Task implements Runnable{
+import java.util.concurrent.TimeUnit;
 
-	private String name;
-    private boolean isPaused;
+public abstract class Task extends Thread {
+
+    private boolean isPaused = true;
  
-    public Task(String name) 
-    {
-        this.name = name;
-    }
-     
-    public String getName() {
-        return name;
+    public Task(String name) {
+        super(name);
     }
  
 	public boolean isRunning() {
@@ -22,9 +18,48 @@ public abstract class Task implements Runnable{
 		return isPaused;
 	}
     
-    public void setPaused(boolean isPaused) {
+    private void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
 	}
+    
+    public void pause(){
+    	setPaused(true);
+    }
+    
+    public void unpause(){
+    	setPaused(false);
+//    	notify();
+    }
+    
+    abstract public void runningImplementation();
+    
+    @Override
+    public void run() {
+        try {
+        	while(true){
+		
+//	                while (isPaused()) {
+//		                    try {
+//		                        wait();
+//		                    } catch (Exception e) { }
+//		                }
+        		synchronized (this) {
+        			if(isRunning()){	                
+            			runningImplementation();
+            		}
+				}
+        		
+        		
+        		TimeUnit.SECONDS.sleep(10);
+        	}
+             	
+        }catch(Exception e){
+        	e.printStackTrace();
+        	
+        }
+    	
+    	
+    }
 
 	
 }

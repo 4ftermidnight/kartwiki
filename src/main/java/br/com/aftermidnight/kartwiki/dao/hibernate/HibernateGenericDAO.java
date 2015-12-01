@@ -124,13 +124,13 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements GenericD
 	
 	/*Utils*/
 	@Override
-	public Integer contarTotalDeRegistros(Class<T> clazz) {
-		return (Integer) entityManager.createQuery("SELECT COUNT(obj) FROM " + clazz.getName() + " obj").getSingleResult();
+	public Long contarTotalDeRegistros(Class<T> clazz) {
+		return (Long) entityManager.createQuery("SELECT COUNT(obj) FROM " + clazz.getName() + " obj").getSingleResult();
 	}
 	
 	@Override
-	public Integer contarTotalDeRegistros() {
-		return (Integer) entityManager.createQuery("SELECT COUNT(obj) FROM " + clazz.getName() + " obj").getSingleResult();
+	public Long contarTotalDeRegistros() {
+		return (Long) entityManager.createQuery("SELECT COUNT(obj) FROM " + clazz.getName() + " obj").getSingleResult();
 	}
 
 	
