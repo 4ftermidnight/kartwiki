@@ -1,0 +1,51 @@
+<ui:composition template="/WEB-INF/template/DefaultLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">::KartTrack</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+	
+		<f:metadata>
+			<f:viewParam name="karttrack" value="#{kartTrackBean.kartTrack}"/>
+			<f:event listener="#{kartTrackBean.init}" type="preRenderView" />
+		</f:metadata>
+
+		
+		
+		<h1>#{kartTrackBean.changing ? 'Edição' : 'Novo'} karttrack</h1>
+		
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" />
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{kartTrackBean.saveKartTrack}" update="@form" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/admin/karttrack/KartTracks" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:panelGrid columns="2" id="painel" style="width: 100%" columnClasses="rotulo, campo">
+				
+				<p:outputLabel value="Código" for="id" />
+				<p:inputText id="id" size="20" maxlength="20" value="#{kartTrackBean.kartTrack.id}" readonly="true" disabled="true" />
+				
+				<p:outputLabel value="Nome" for="name" />
+				<p:inputText id="name" size="20" maxlength="20" value="#{kartTrackBean.kartTrack.name}" />
+				
+			</p:panelGrid>
+
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

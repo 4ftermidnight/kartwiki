@@ -23,7 +23,7 @@
     		
     		<p:toolbar style="margin-top: 20px">
     			<p:toolbarGroup>
-    				<p:button value="Novo"/>
+    				<p:button value="Novo" outcome="/admin/karttrack/AddKartTrack"/>
     			</p:toolbarGroup>
     		</p:toolbar>
     	
@@ -49,10 +49,8 @@
 		    		</p:column>
 		    
 		    	
-		    	
-		    	
 		    		<p:column style="width: 100px; text-align: center">
-		    			<p:button  icon="ui-icon-pencil" title="Editar">
+		    			<p:button  icon="ui-icon-pencil" title="Editar" outcome="/admin/karttrack/AddKartTrack">
 		    				<f:param name="kartTrack" value="#{item.id}"/>
 		    			</p:button>
 		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"

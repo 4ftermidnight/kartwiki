@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.aftermidnight.kartwiki.dao.hibernate.KartTrackDAO;
 import br.com.aftermidnight.kartwiki.model.KartTrack;
+import br.com.aftermidnight.kartwiki.util.jpa.Transactional;
 
 public class KartTrackService implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,11 @@ public class KartTrackService implements Serializable{
 
 	public List<KartTrack> obterTodosKartodromos() {
 		return dao.buscarTodos();
+	}
+	
+	@Transactional
+	public void salvar(KartTrack entidade) {
+		dao.salvar(entidade);
 	}
 	
 	

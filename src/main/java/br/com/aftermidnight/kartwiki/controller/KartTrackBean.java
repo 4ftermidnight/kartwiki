@@ -12,18 +12,28 @@ import javax.inject.Named;
 
 import br.com.aftermidnight.kartwiki.dao.hibernate.KartTrackDAO;
 import br.com.aftermidnight.kartwiki.model.KartTrack;
+import br.com.aftermidnight.kartwiki.service.KartTrackService;
+import br.com.aftermidnight.kartwiki.util.jpa.Transactional;
+import br.com.aftermidnight.kartwiki.util.jsf.FacesUtil;
 
 @RequestScoped
 @Named
 public class KartTrackBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Inject	private KartTrackDAO dao;
+	@Inject private KartTrackService service;
 	
-	private KartTrack kartTrack;
+	/*----------- Componentes utlizados no view -------------*/
+	
+	//novo karttrak a ser cadastrado
+	private KartTrack kartTrack = new KartTrack();
 	
 	private KartTrack selectedKartTrack;
 	
 	private List<KartTrack> kartTracks = new ArrayList<>();
+	
+	/*----------- Componentes utlizados no view -------------*/
 	
 	public KartTrackBean(){}
 	
@@ -37,33 +47,33 @@ public class KartTrackBean implements Serializable{
 		
     }
 	
+	// metodo chamado por meio da página (no prerender da view).
 	public void init(){
-		if (this.kartTrack == null) {
-			this.clean();
-		}
-		
-		this.kartTracks = dao.buscarTodos();
-//		this.categorias = Arrays.asList(Categoria.values());
+		// isPostback checa se já é postback (se não é o primeiro carregamento
+		// da pagina)
+		if (!FacesUtil.isPostback()) {
+			this.kartTracks = dao.buscarTodos();
+		}		
 	}
 	
 	public void removeKartTrack(){
-//		try {
-//			dao.excluir(selectedKartTrack);
-//			this.kartTracks.remove(selectedKartTrack);
-//			FacesUtil.info("Kartódromo " + selectedKartTrack.getName() + " excluído com sucesso.");
-//		} catch (BusinessException e) {
-//			FacesUtil.error(e.getMessage());
-//		}
+		try {
+			dao.remover(selectedKartTrack);
+			this.kartTracks.remove(selectedKartTrack);
+			FacesUtil.info("Kartódromo " + selectedKartTrack.getName() + " excluído com sucesso.");
+		} catch (Exception e) {
+			FacesUtil.error(e.getMessage());
+		}
 	}
-	
+
 	public void saveKartTrack(){
-//		try {
-//			this.cadastroKartTrackService.salvar(kartTrack);
-//			FacesUtil.info("Kartódromo salvo com sucesso!");
-//			this.clean();
-//		} catch (BusinessException e) {
-//			FacesUtil.error(e.getMessage());
-//		}
+		try {
+			service.salvar(kartTrack);
+			FacesUtil.info("Kartódromo salvo com sucesso!");
+			this.clean();
+		} catch (Exception e) {
+			FacesUtil.error(e.getMessage());
+		}
 	}
 	
 	public boolean isChanging() {
