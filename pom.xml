@@ -33,12 +33,14 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.2.2.Final</version>
+			<scope>compile</scope>
 		</dependency>
 		<!-- Hibernate Bean Validation depende do javax.el -->
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>3.0.0</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- PrimeFaces (biblioteca de componentes) -->
@@ -105,7 +107,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1203-jdbc41</version>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Logging: Hibernate uses Simple Logging Facade for Java (SLF4J) to 
@@ -238,8 +240,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 

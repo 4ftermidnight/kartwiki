@@ -1,6 +1,6 @@
 
 <ehcache>
-	<diskStore path="/home/nicolas/dev/teste-cache" />
+	<diskStore path="./teste-cache" />
 	<defaultCache 
 		maxElementsInMemory="1000" 
 		eternal="false"
