@@ -9,7 +9,8 @@ body {
 
 header {
 	padding: 5px 0px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+	padding-top: 10px;
 	height: 30px;
 
 	background-color: #545454;
@@ -23,7 +24,8 @@ header > div {
 }
 
 #conteudo {
-	padding: 0px 8px
+	padding: 0px 8px;
+	height: 600px;
 }
 
 footer {

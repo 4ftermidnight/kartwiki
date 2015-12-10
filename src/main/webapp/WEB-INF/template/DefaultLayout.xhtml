@@ -9,7 +9,7 @@
 	<h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="titulo">KartWiki</ui:insert></title>
-        <h:outputStylesheet library="css" name="limpa.css" />
+        <h:outputStylesheet library="css" name="normalize.css" />
         <h:outputStylesheet library="css" name="primefaces-custom.css" />
         <h:outputStylesheet library="css" name="sistema.css" />
         
@@ -28,34 +28,44 @@
 		</p:ajaxStatus>
 	
 		<header>
-			<div style="float: left">
+		<h:form>
+			<div style="float: left" id="div-logo">
 				<h:link outcome="/Home">
 					<h:graphicImage library="imagens" name="logo.png" />
 				</h:link>
 			</div>
 			
-			<div style="float: right; margin-right: 110px">
-				<h:form style="display: inline-block">
+			
+			<div style="float: right; margin-right: 110px" id="div-menu">
+				
+				<div style="display: inline-block">
 					<p:menubar styleClass="menu-sistema">
 						<p:submenu label="Administrativo">
 							<p:menuitem value="Serviços" outcome="/admin/Services"/>
-							<p:menuitem value="Kartodromos" outcome="/admin/KartTracks" />
-<!-- 							<p:menuitem value="Acessório" outcome="/acessorio/PesquisaAcessorios.xhtml"/> -->
-<!-- 							<p:menuitem value="Carro" outcome="/carro/PesquisaCarros.xhtml" /> -->
-<!-- 							<p:separator/> -->
-<!-- 							<p:menuitem value="Funcionário" outcome="/funcionario/PesquisaFuncionarios.xhtml"/> -->
-<!-- 							<p:menuitem value="Motorista" outcome="/motorista/PesquisaMotoristas.xhtml"/> -->
+							<p:separator/> 
+							<p:menuitem value="Kartodromos" outcome="/admin/karttrack/KartTracks" />
 						</p:submenu>
-<!-- 						<p:menuitem value="Piloto" outcome="/aluguel/NovoAluguel.xhtml"/> -->
-<!-- 						<p:submenu label="Relatórios"> -->
-<!-- 							<p:menuitem value="Aluguel por carro" outcome="/aluguel/PesquisaAluguel.xhtml" /> -->
-<!-- 							<p:menuitem value="Total no mês" outcome="/aluguel/TotalMesAluguel.xhtml" /> -->
-<!-- 							<p:menuitem value="Aluguel por carro (Criteria)" outcome="/aluguel/PesquisaAluguelCriteria.xhtml" /> -->
-<!-- 						</p:submenu> -->
 					</p:menubar>
-				</h:form>
+				</div>
+
+				<div id="user-menu" style="display:inline-block" >
+					<div id="foto" style="float: left; margin: 2px 35px;" >
+					FOTO
+					</div>
+					
+					<div id="menu" style="display:inline-block" >
+						<p:menubar styleClass="menu-sistema">
+							<p:submenu label="Nome Usuário Logado">
+								<p:menuitem value="Sair" />
+							</p:submenu>
+						</p:menubar>
+					</div>
+		
+				</div>
+
 			</div>
-			<div style="clear: both"></div>
+			<div style="clear: both"/>
+		</h:form>
 		</header>
 		
 		<div id="conteudo">
@@ -65,7 +75,7 @@
 		<p:separator style="margin-top: 20px"/>
 	
 		<footer>
-			by After Midnight Group-
+			by AfterMidnight Group - 
 			<a href="#" target="_blank">www.aftermidnight.dev</a>
 		</footer>
 	</h:body>
