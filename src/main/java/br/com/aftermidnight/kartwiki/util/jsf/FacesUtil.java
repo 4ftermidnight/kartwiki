@@ -11,6 +11,10 @@ public class FacesUtil {
 		return FacesContext.getCurrentInstance().isPostback();
 	}
 	
+	public static boolean isNotPostback(){
+		return !isPostback();
+	}
+	
 //	static public void addErrorMessage(String msg) {
 //		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
 //	}

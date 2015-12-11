@@ -28,6 +28,11 @@ public class KartTrackService implements Serializable{
 		dao.salvar(entidade);
 	}
 	
+	@Transactional
+	public void remover(KartTrack entidade) {
+		dao.remover(entidade);
+	}
+	
 	
 
 }

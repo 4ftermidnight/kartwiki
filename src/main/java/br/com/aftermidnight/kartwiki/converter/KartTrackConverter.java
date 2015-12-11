@@ -6,10 +6,9 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import org.apache.commons.lang3.StringUtils;
-
 import br.com.aftermidnight.kartwiki.dao.hibernate.KartTrackDAO;
 import br.com.aftermidnight.kartwiki.model.KartTrack;
+import br.com.aftermidnight.kartwiki.util.StringUtils;
 
 @FacesConverter(forClass = KartTrack.class)
 public class KartTrackConverter implements Converter {

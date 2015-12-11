@@ -13,7 +13,6 @@ import javax.inject.Named;
 import br.com.aftermidnight.kartwiki.dao.hibernate.KartTrackDAO;
 import br.com.aftermidnight.kartwiki.model.KartTrack;
 import br.com.aftermidnight.kartwiki.service.KartTrackService;
-import br.com.aftermidnight.kartwiki.util.jpa.Transactional;
 import br.com.aftermidnight.kartwiki.util.jsf.FacesUtil;
 
 @RequestScoped
@@ -51,7 +50,7 @@ public class KartTrackBean implements Serializable{
 	public void init(){
 		// isPostback checa se já é postback (se não é o primeiro carregamento
 		// da pagina)
-		if (!FacesUtil.isPostback()) {
+		if (FacesUtil.isNotPostback()) {
 			this.kartTracks = dao.buscarTodos();
 		}		
 	}
