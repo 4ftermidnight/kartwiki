@@ -51,7 +51,7 @@
 		    	
 		    		<p:column style="width: 100px; text-align: center">
 		    			<p:button  icon="ui-icon-pencil" title="Editar" outcome="/admin/karttrack/AddKartTrack">
-		    				<f:param name="kartTrack" value="#{item.id}"/>
+		    				<f:param name="karttrack" value="#{item.id}"/>
 		    			</p:button>
 		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
 								process="@this" update=":frm:confirmacaoExclusaoDialog">
