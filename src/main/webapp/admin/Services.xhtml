@@ -1,52 +1,43 @@
-<ui:composition template="/WEB-INF/template/DefaultLayout.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/Layout.xhtml">
+	
+	<ui:define name="content">
+		<h:form id="frm">
+			
+			<p:growl id="growl" life="2000" />
+			
+			<h1 class="am-page-title"><i class="fa fw fa-cogs" ></i> Serviços</h1>
+				
 
-	<ui:define name="titulo">Área Administrativa</ui:define>
-
-	<ui:define name="corpo">
-		<h:form id="form">
-		
-		<p:growl id="growl" life="2000"  />
-		
-		<p:fieldset legend="Serviços" toggleable="true" toggleSpeed="500">
-	        <h:panelGrid columns="2" cellpadding="5">
-	        
-	            <h:outputLabel for="panel-bt-leitura-xml" value="Serviço de leitura do XML:"/> 
-	           
-				<h:panelGroup id="panel-bt-leitura-xml" layout="block">
-					<p:commandButton id="btInitThread" 
-							value="Iniciar..."  
+			<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-2">
+						<h:outputLabel for="panel-bt-leitura-xml" value="Serviço de leitura do XML: " />
+					</div>
+					
+					<div class="ui-grid-col-10">
+						<h:panelGroup id="panel-bt-leitura-xml" layout="block">
+						<p:commandButton id="btInitThread" value="Iniciar..."
 							update="growl, panel-bt-leitura-xml"
-							actionListener="#{kartTrackUpdateServiceBean.resume}" 
-							styleClass="ui-priority-primary" 
-							rendered="#{not kartTrackUpdateServiceBean.running}"/>
-							
-					<p:commandButton id="btStopThread" 
-							value="Parar..."  
-							update="growl, panel-bt-leitura-xml" 
-							actionListener="#{kartTrackUpdateServiceBean.pause}" 
-							styleClass="ui-priority-primary" 
-							rendered="#{kartTrackUpdateServiceBean.running}"/>
-							
-							<br/>
-				</h:panelGroup>
-
-
-	        </h:panelGrid>
-    	</p:fieldset>
-		
-		<br/>
-		
-		
-
- 
+							actionListener="#{kartTrackUpdateServiceBean.resume}"
+							styleClass="ui-priority-primary"
+							rendered="#{not kartTrackUpdateServiceBean.running}" />
+	
+						<p:commandButton id="btStopThread" value="Parar..."
+							update="growl, panel-bt-leitura-xml"
+							actionListener="#{kartTrackUpdateServiceBean.pause}"
+							styleClass="ui-priority-primary"
+							rendered="#{kartTrackUpdateServiceBean.running}" />
+	
+						</h:panelGroup>
+					</div>
+				</div>
+			</div>
 		</h:form>
-		
-		
 	</ui:define>
-
+	
 </ui:composition>

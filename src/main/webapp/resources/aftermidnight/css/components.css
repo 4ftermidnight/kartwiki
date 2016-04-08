@@ -68,7 +68,7 @@
 }
 
 .am-userinfo > .am-userinfo-navbar{
-	z-index:9997;
+	z-index:997;
 	position: fixed;
 	top: 77px;
 	right:10px;

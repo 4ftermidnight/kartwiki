@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,7 +15,7 @@ import br.com.aftermidnight.kartwiki.model.KartTrack;
 import br.com.aftermidnight.kartwiki.service.UpdateKartTrackTask;
 import br.com.aftermidnight.kartwiki.util.jsf.FacesUtil;
 
-@ApplicationScoped
+@RequestScoped
 @Named
 public class KartTrackUpdateServiceBean implements Serializable{
 
