@@ -26,11 +26,11 @@ public class UpdateKartTrackTask extends Task {
 	@Override
 	public void runningImplementation() {
 	       System.out.println(getName()+ " : "+ new Date());
-	       KartodromoXMLElement  elem = readXmlData(getXmlUrl());
-
-	       proccessData(elem);
-	       
-	       System.out.println(dao.contarTotalDeRegistros());
+//	       KartodromoXMLElement  elem = readXmlData(getXmlUrl());
+//
+//	       proccessData(elem);
+//	       
+//	       System.out.println(dao.contarTotalDeRegistros());
 	       
 	}
 	

@@ -11,5 +11,11 @@
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
 	</application>
+	
+	<factory>
+		<exception-handler-factory>
+			br.com.aftermidnight.kartwiki.util.jsf.JsfExceptionHandlerFactory
+		</exception-handler-factory>
+	</factory>
 
 </faces-config>

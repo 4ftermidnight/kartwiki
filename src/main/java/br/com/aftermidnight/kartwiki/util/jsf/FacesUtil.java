@@ -15,14 +15,6 @@ public class FacesUtil {
 		return !isPostback();
 	}
 	
-//	static public void addErrorMessage(String msg) {
-//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
-//	}
-//	
-//	static public void addInfoMessage(String msg) {
-//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-//	}
-	
 	static private void add(String message, Severity severity) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage(message);
