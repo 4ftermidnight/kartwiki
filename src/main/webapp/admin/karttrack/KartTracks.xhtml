@@ -32,27 +32,30 @@
 			<!-- FIXME: Colocar a tabela responsiva -->
 			<p:dataTable id="kartTrackTable" value="#{kartTrackBean.kartTracks}" var="item"
 		    		style="margin-top: 20px" emptyMessage="Nenhum kartódromo encontrado." rows="20"
-		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
-		    		<p:column headerText="Código" style="text-align: center; width: 100px">
+		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
+		    		reflow="true">
+		    		
+		    		<p:column headerText="Código" style="text-align: center; width: 100px" priority="1">
 		    			<h:outputText value="#{item.id}" />
 		    		</p:column>
-		    		<p:column headerText="Nome">
+		    		<p:column headerText="Nome" priority="1">
 		    			<h:outputText value="#{item.name}" />
 		    		</p:column>
-		    		<p:column headerText="Nome no XML">
+		    		<p:column headerText="Nome no XML" priority="2">
 		    			<h:outputText value="#{item.otherName}" />
 		    		</p:column>
 		    		
-		    		<p:column headerText="XML">
+		    		<p:column headerText="XML" priority="3">
 		    			<h:outputText value="#{item.urlXml}" />
 		    		</p:column>
 		    		
-		    		<p:column headerText="Site">
+		    		<p:column headerText="Site" priority="3">
 		    			<h:outputText value="#{item.urlSite}" />
 		    		</p:column>
 		    
 		    	
-		    		<p:column style="width: 100px; text-align: center">
+		    		<p:column style="width: 100px; text-align: center" priority="1">
+		    		<div>
 		    			<p:button  icon="ui-icon-pencil" title="Editar" outcome="/admin/karttrack/AddKartTrack">
 		    				<f:param name="karttrack" value="#{item.id}"/>
 		    			</p:button>
@@ -60,7 +63,9 @@
 								process="@this" update=":frm:confirmacaoExclusaoDialog">
 							<f:setPropertyActionListener target="#{kartTrackBean.selectedKartTrack}" value="#{item}" />
 						</p:commandButton>
+					</div>
 		    		</p:column>
+		    		
 		    </p:dataTable>
 		    
 		    <p:confirmDialog id="confirmacaoExclusaoDialog" widgetVar="confirmacaoExclusao"
