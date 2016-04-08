@@ -11,16 +11,13 @@
 		</f:metadata>
 			
 		<h:form id="frm">
-			
-			
-			
-			
-			<p:growl id="growl" life="2000" />
-			
+
 			<h1 class="am-page-title"><i class="fa fw fa-cars" ></i> KartTrack</h1>
 				
-			Gerenciar kartodromos xml etc e tal	
+			Gerenciar kartodromos, xml etc e tal	
 			<br/>
+			
+			<p:messages id="messages" autoUpdate="true" closable="true" />
 			
 			<p:toolbar style="margin-top: 20px">
     			<p:toolbarGroup>
@@ -28,8 +25,6 @@
     			</p:toolbarGroup>
     		</p:toolbar>
 			
-			
-			<!-- FIXME: Colocar a tabela responsiva -->
 			<p:dataTable id="kartTrackTable" value="#{kartTrackBean.kartTracks}" var="item"
 		    		style="margin-top: 20px" emptyMessage="Nenhum kartódromo encontrado." rows="20"
 		    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
@@ -55,15 +50,18 @@
 		    
 		    	
 		    		<p:column style="width: 100px; text-align: center" priority="1">
+		    		
 		    		<div>
 		    			<p:button  icon="ui-icon-pencil" title="Editar" outcome="/admin/karttrack/AddKartTrack">
 		    				<f:param name="karttrack" value="#{item.id}"/>
 		    			</p:button>
+
 		    			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
 								process="@this" update=":frm:confirmacaoExclusaoDialog">
 							<f:setPropertyActionListener target="#{kartTrackBean.selectedKartTrack}" value="#{item}" />
 						</p:commandButton>
 					</div>
+					
 		    		</p:column>
 		    		
 		    </p:dataTable>

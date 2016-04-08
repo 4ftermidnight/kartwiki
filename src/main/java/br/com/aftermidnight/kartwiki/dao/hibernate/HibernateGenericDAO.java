@@ -16,7 +16,9 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.aftermidnight.kartwiki.dao.GenericDAO;
 
-public class HibernateGenericDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
+public class HibernateGenericDAO<T, ID extends Serializable> implements GenericDAO<T, ID>, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private EntityManager entityManager;

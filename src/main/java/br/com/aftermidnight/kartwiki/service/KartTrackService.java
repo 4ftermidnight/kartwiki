@@ -30,7 +30,7 @@ public class KartTrackService implements Serializable{
 	
 	@Transactional
 	public void remover(KartTrack entidade) {
-		dao.remover(entidade);
+		dao.remover(entidade.getId());
 	}
 	
 	

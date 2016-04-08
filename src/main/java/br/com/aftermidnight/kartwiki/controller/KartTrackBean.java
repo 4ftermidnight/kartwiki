@@ -6,21 +6,19 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.aftermidnight.kartwiki.dao.hibernate.KartTrackDAO;
 import br.com.aftermidnight.kartwiki.model.KartTrack;
 import br.com.aftermidnight.kartwiki.service.KartTrackService;
 import br.com.aftermidnight.kartwiki.util.jsf.FacesUtil;
 
-@RequestScoped
+
+@javax.faces.view.ViewScoped
 @Named
-public class KartTrackBean implements Serializable{
+public class KartTrackBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Inject	private KartTrackDAO dao;
 	@Inject private KartTrackService service;
 	
 	/*----------- Componentes utlizados no view -------------*/
@@ -51,13 +49,13 @@ public class KartTrackBean implements Serializable{
 		// isPostback checa se já é postback (se não é o primeiro carregamento
 		// da pagina)
 		if (FacesUtil.isNotPostback()) {
-			this.kartTracks = dao.buscarTodos();
+			this.kartTracks = service.obterTodosKartodromos();
 		}		
 	}
 	
 	public void removeKartTrack(){
 		try {
-			dao.remover(selectedKartTrack);
+			service.remover(selectedKartTrack);
 			this.kartTracks.remove(selectedKartTrack);
 			FacesUtil.info("Kartódromo " + selectedKartTrack.getName() + " excluído com sucesso.");
 		} catch (Exception e) {
