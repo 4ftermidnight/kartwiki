@@ -7,7 +7,8 @@ import org.springframework.security.core.userdetails.User;
 
 import br.com.aftermidnight.kartwiki.model.Usuario;
 
-
+//Classe que representa o usuario do sistema pensando no SpringSecurity
+//Foi criado uma classe chamada UsuarioSistema para poder armazenar o objeto usuario
 public class UsuarioSistema extends User {
 
 	private static final long serialVersionUID = 1L;

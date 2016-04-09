@@ -43,28 +43,10 @@
 	
 	<section class="am-content  js-content is-toggled">
 	
-		<h1 class="am-page-title"></h1>
+		<h1 class="am-page-title">Acesso Negado!</h1>
 		
 		
-		<div id="login-dialog"> 
-			<h1>Login</h1>   		
-    		<h:form id="frm" prependId="false">
-    		
-    			<p:messages id="messages" autoUpdate="true" closable="true"></p:messages>
-    		
-    			<h:panelGrid columns="2" styleClass="grid-login">
-    				<p:outputLabel value="E-mail"  />
-    				<p:inputText size="30" id="j_username" value="#{loginBean.email}"/>
-    				
-    				<p:outputLabel value="Senha" />
-    				<p:password size="30" id="j_password"/>
-    				
-    				<h:panelGroup/>
-    				<p:commandButton value="Login" action="#{loginBean.login}" ajax="false" onclick="$('.am-ajax-status > div').show()"/>
-    			</h:panelGrid>
-    			
-    		</h:form>
-    	</div>
+		
     	
 	</section>
 

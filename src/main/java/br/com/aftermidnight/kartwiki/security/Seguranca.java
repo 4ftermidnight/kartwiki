@@ -1,6 +1,7 @@
 package br.com.aftermidnight.kartwiki.security;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -23,6 +24,8 @@ public class Seguranca {
 		return nome;
 	}
 
+	@Produces
+	@UsuarioLogado
 	private UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;
 		

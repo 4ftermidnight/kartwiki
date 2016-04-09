@@ -21,6 +21,7 @@ public class AppUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		//Esta classe é um Bean do springSecurity e nao um Bean do CDI. 
 		UsuarioDAO dao = CDIServiceLocator.getBean(UsuarioDAO.class);
 		Usuario usuario = dao.buscarPorEmail(email);
 		
