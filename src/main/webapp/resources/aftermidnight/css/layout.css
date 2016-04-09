@@ -24,6 +24,11 @@ body {
 	margin-left: 20px;
 }
 
+/*AJAX STATUS*/
+.am-ajax-status{
+	float:right;
+}
+
 /* SIDEBAR */
 .am-sidebar {
 	position: fixed;

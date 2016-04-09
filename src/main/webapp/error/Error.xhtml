@@ -1,13 +1,48 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:of="http://omnifaces.org/functions"
-	template="/WEB-INF/template/Layout.xhtml">
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+
+	<title>Kartkiwi</title>
+
+	<h:outputStylesheet library="aftermidnight" name="css/normalize.css" />
+	<h:outputStylesheet library="aftermidnight" name="css/custom.css" />
+	<h:outputStylesheet library="aftermidnight" name="css/layout.css" />
+	<h:outputStylesheet library="aftermidnight" name="css/components.css" />
+
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
+	<h:outputScript target="body" library="aftermidnight" name="js/app.js" />
+</h:head>
+
+<h:body>
+	<p:ajaxStatus styleClass="ajax-status">
+			<f:facet name="start">
+				<h:graphicImage library="aftermidnight" name="img/carregando.gif"/>
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value=""/>
+			</f:facet>
+	</p:ajaxStatus>
+			
+	<header class="am-topbar js-toggle">
+		
+	</header>
 	
-	<ui:define name="content">
+	
+	<section class="am-content  js-content is-toggled">
+	
+		<h1 class="am-page-title"> =( </h1>
 		
 		<h:outputScript>
 	        function faceletstoggle(id) {
@@ -26,59 +61,60 @@
         
         
 		
-	<c:set var="errorDate" 		scope="request"	value="#{of:formatDate(now, 'yyyy-MM-dd HH:mm:ss')}" />
+		<c:set var="errorDate" 		scope="request"	value="#{of:formatDate(now, 'yyyy-MM-dd HH:mm:ss')}" />
+	
+		<c:set var="errorView"		scope="request"	value="#{requestScope['com.sun.faces.error.view']}" />
+		<c:set var="exception" 		scope="request"	value="#{requestScope['javax.servlet.error.exception']}" />
+		<c:set var="requestURI"		scope="request"	value="#{requestScope['javax.servlet.error.request_uri']}" />
+		<c:set var="errorMsg"		scope="request"	value="#{requestScope['javax.servlet.error.message']}" />
+		<c:set var="statusCode"		scope="request"	value="#{requestScope['javax.servlet.error.status_code']}" />
+		<c:set var="exceptionType"	scope="request"	value="#{requestScope['javax.servlet.error.exception_type']}" />
+		
+		<c:set var="userAgent"		scope="request" value="#{header['user-agent']}"	/>
+		<c:set var="userIP"			scope="request" value="#{request.remoteAddr}" />
+		<c:set var="usingAjax"		scope="request" value="#{facesContext.partialViewContext.ajaxRequest ? 'Sim' : 'Não'}" 	/>
+		
+		<h2>Erro ao processar sua requisição (<h:link outcome="/Home">Home</h:link>)</h2>
+		
+		<br/>
+	
+			
+		<h2 style="font-size: large; color: #339;">
+			<a style="text-decoration: none; color: #339;" href="#" onclick="faceletstoggle('info'); return false;"> 
+				<span id="infoOff"  style="display: none;">+</span><span id="infoOn">-</span> Info
+			</a>
+		</h2>
+		
+		<div style="padding: 8px; margin: 10px 0; border: 1px solid #CCC; background-color: #f9f9f9;"	id="info">
+		<ul>
+			<li><b>Date/time:</b> 			#{errorDate}</li>
+			<li><b>User agent:</b>			#{userAgent}</li>
+			<li><b>User IP:</b>				#{userIP}</li>
+			<li><b>Request URI:</b>			#{requestURI}</li>
+			<li><b>Ajax request:</b> 		#{usingAjax}</li>
+			<li><b>Status code:</b>			#{statusCode}</li>
+			<li><b>Exception type:</b>		#{exceptionType}</li>
+			<li><b>Exception message:</b>	#{errorMsg}</li>
+			<li><b>Error View:</b>			#{errorView}</li>
+		</ul>
+		</div>
+	
+		<h2 style="font-size: large; color: #339;">
+			<a style="text-decoration: none; color: #339;" href="#" onclick="faceletstoggle('trace'); return false;"> 
+				<span id="traceOff">+</span><span id="traceOn" style="display: none;">-</span> Stack Trace
+			</a>
+		</h2>
+		<div style="padding: 8px; margin: 10px 0; border: 1px solid #CCC; background-color: #f9f9f9; display: none"	id="trace">
+			<pre>
+				<code>#{of:printStackTrace(exception)}</code>
+			</pre>
+		</div>
+			
+			
+		<div style="padding: 8px; margin: 10px 0; border: 1px solid #CCC; background-color: #f9f9f9; text-align: right; color: #666;">Generated</div>
 
-	<c:set var="errorView"		scope="request"	value="#{requestScope['com.sun.faces.error.view']}" />
-	<c:set var="exception" 		scope="request"	value="#{requestScope['javax.servlet.error.exception']}" />
-	<c:set var="requestURI"		scope="request"	value="#{requestScope['javax.servlet.error.request_uri']}" />
-	<c:set var="errorMsg"		scope="request"	value="#{requestScope['javax.servlet.error.message']}" />
-	<c:set var="statusCode"		scope="request"	value="#{requestScope['javax.servlet.error.status_code']}" />
-	<c:set var="exceptionType"	scope="request"	value="#{requestScope['javax.servlet.error.exception_type']}" />
-	
-	<c:set var="userAgent"		scope="request" value="#{header['user-agent']}"	/>
-	<c:set var="userIP"			scope="request" value="#{request.remoteAddr}" />
-	<c:set var="usingAjax"		scope="request" value="#{facesContext.partialViewContext.ajaxRequest ? 'Sim' : 'Não'}" 	/>
-	
-	
-	<h1 class="am-page-title"> =( </h1>
-	<h1>Erro ao processar sua requisição</h1>
+	</section>
 
-		
-	<h2 style="font-size: large; color: #339;">
-		<a style="text-decoration: none; color: #339;" href="#" onclick="faceletstoggle('info'); return false;"> 
-			<span id="infoOff"  style="display: none;">+</span><span id="infoOn">-</span> Info
-		</a>
-	</h2>
-	
-	<div style="padding: 8px; margin: 10px 0; border: 1px solid #CCC; background-color: #f9f9f9;"	id="info">
-	<ul>
-		<li><b>Date/time:</b> 			#{errorDate}</li>
-		<li><b>User agent:</b>			#{userAgent}</li>
-		<li><b>User IP:</b>				#{userIP}</li>
-		<li><b>Request URI:</b>			#{requestURI}</li>
-		<li><b>Ajax request:</b> 		#{usingAjax}</li>
-		<li><b>Status code:</b>			#{statusCode}</li>
-		<li><b>Exception type:</b>		#{exceptionType}</li>
-		<li><b>Exception message:</b>	#{errorMsg}</li>
-		<li><b>Error View:</b>			#{errorView}</li>
-	</ul>
-	</div>
+</h:body>
 
-	<h2 style="font-size: large; color: #339;">
-		<a style="text-decoration: none; color: #339;" href="#" onclick="faceletstoggle('trace'); return false;"> 
-			<span id="traceOff">+</span><span id="traceOn" style="display: none;">-</span> Stack Trace
-		</a>
-	</h2>
-	<div style="padding: 8px; margin: 10px 0; border: 1px solid #CCC; background-color: #f9f9f9; display: none"	id="trace">
-		<pre>
-			<code>#{of:printStackTrace(exception)}</code>
-		</pre>
-	</div>
-		
-		
-	<div style="padding: 8px; margin: 10px 0; border: 1px solid #CCC; background-color: #f9f9f9; text-align: right; color: #666;">Generated</div>
-		
-		
-	</ui:define>
-	
-</ui:composition>
+</html>

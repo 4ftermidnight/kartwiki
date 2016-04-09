@@ -199,9 +199,9 @@
 		<!-- <scope>compile</scope> -->
 		<!-- </dependency> -->
 
-
-
-		<!-- Spring Security (autenticação e autorização) -->
+		
+		<!-- TODO: migrar para versão 3.2.5 -->
+		<!-- Spring Security (autenticação e autorização) versao do algaworks -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -217,6 +217,22 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.1.4.RELEASE</version>
 		</dependency>
+
+		<!-- Dependencia para usar o namespace do spring security nas paginas JSF
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>org.springframework.faces</artifactId>
+			<version>2.0.5.RELEASE</version>
+		</dependency>-->
+		
+		<!-- API de Servlet -->
+		<dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>javax.servlet-api</artifactId>
+	        <version>3.0.1</version>
+	        <scope>provided</scope>
+		</dependency>
+		
 	</dependencies>
 
 

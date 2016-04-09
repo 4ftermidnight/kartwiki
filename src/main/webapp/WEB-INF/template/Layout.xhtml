@@ -23,7 +23,7 @@
 </h:head>
 
 <h:body>
-		<p:ajaxStatus styleClass="ajax-status">
+		<p:ajaxStatus styleClass="am-ajax-status">
 			<f:facet name="start">
 				<h:graphicImage library="aftermidnight" name="img/carregando.gif"/>
 			</f:facet>
@@ -45,7 +45,7 @@
 			
 			<div class="am-userinfo-navbar js-userinfo-navbar is-toggled">
 				<div class="am-user-avatar js-userinfo-dropdown"></div>
-				<span class="am-username">Username</span>
+				<span class="am-username">#{seguranca.nomeUsuario}</span>
 				<ui:include src="UserinfoMenu.xhtml" />
 			</div>
 						
