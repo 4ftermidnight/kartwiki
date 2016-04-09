@@ -219,6 +219,7 @@
 		</dependency>
 
 		<!-- Dependencia para usar o namespace do spring security nas paginas JSF
+		(nao funcionou, resolver depois
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>org.springframework.faces</artifactId>
