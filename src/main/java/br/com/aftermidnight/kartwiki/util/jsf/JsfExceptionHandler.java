@@ -37,6 +37,8 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 			
 			Throwable exception = context.getException();
 			BusinessException negocioException = getNegocioException(exception);
+
+			exception.printStackTrace();
 			
 			boolean handled = false;
 			
