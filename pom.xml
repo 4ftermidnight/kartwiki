@@ -243,7 +243,7 @@
 		<repository>
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
-			<url>http://repository.primefaces.org</url>
+			<url>https://repository.primefaces.org</url>
 			<layout>default</layout>
 		</repository>
 
@@ -251,13 +251,13 @@
 		<repository>
 			<id>public-jboss</id>
 			<name>public-jboss</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
 
 		<!-- Repositorio do jrimun, para usar o bopebo para gerar boletos -->
 		<repository>
 			<id>jrimum.org</id>
-			<url>http://jrimum.org/maven/content/groups/public</url>
+			<url>https://jrimum.org/maven/content/groups/public</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
